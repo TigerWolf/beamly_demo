@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:TigerWolf/zeebox.git
+  revision: d100b3d29ba102e479030d0e54195253b12a4b73
+  specs:
+    zeebox (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -117,3 +123,4 @@ DEPENDENCIES
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
+  zeebox (= 0.0.1)!
