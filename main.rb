@@ -17,7 +17,7 @@ get '/api/' do
 
   z = Zeebox::Epg.new
   region_id = z.regions.first.id
-  provider_id = z.providers.id
+  provider_id = z.providers.first.id
   result = z.catalogues(region_id, provider_id)
   services = z.epg(result.first.epg_id)
   today = Date.today.strftime("%Y/%m/%d")
