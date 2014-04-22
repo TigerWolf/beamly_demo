@@ -1,3 +1,0 @@
-== Zeebox Demo
-
-This is a demo rails app that uses the zeebox gem.
