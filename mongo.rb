@@ -33,10 +33,7 @@ end
 
 get '/insert_data' do
 
-  Zeebox.configure do |config|
-    config.id = 'c9a8a7fb'
-    config.key = '1009de15cb2d654b060a90ddffcc6c5c'
-  end
+  require 'config/initializers/zeebox.rb'
 
   z = Zeebox::Epg.new
   region_id = z.regions.first.id
@@ -51,11 +48,11 @@ get '/insert_data' do
 
   # Create new data from the api
   schedule.each do |tvshow|
-    tv_show = Tvshow.new(name: tvshow["title"])
+    tv_show = Tvshow.new(name: tvshow.title)
 
-    time = Time.at(tvshow["start"]).getlocal
+    time = Time.at(tvshow.start).getlocal
     tv_show.show = Show.new(time: time)
-    tv_show.episode = Episode.new(overview: tvshow["desc"], image: tvshow["img"])
+    tv_show.episode = Episode.new(overview: tvshow.desc, image: tvshow.img)
     tv_show.save
   end
 

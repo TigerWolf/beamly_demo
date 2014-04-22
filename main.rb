@@ -10,10 +10,8 @@ get '/' do
 end
 
 get '/api/' do
-  Zeebox.configure do |config|
-    config.id = 'c9a8a7fb'
-    config.key = '1009de15cb2d654b060a90ddffcc6c5c'
-  end
+
+  require 'config/initializers/zeebox.rb'
 
   z = Zeebox::Epg.new
   region_id = z.regions.first.id
