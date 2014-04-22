@@ -1,17 +1,17 @@
 Zeebox Demo App
 ===============
 
-This is a demo application using the zeebox gem. You can find that at ![](http://github.com/TigerWolf/zeebox).
+This is a demo application using the zeebox gem. You can find that at http://github.com/TigerWolf/zeebox.
 
-This is based off Serialgraphy which you can find here: ![](https://github.com/sallar/serialgraphy)
+This is based off Serialgraphy which you can find here: https://github.com/sallar/serialgraphy
 
 Instead of a php backend, this one uses sinatra and mongodb. Instead of Trakt it uses Zeebox api. 
 
 Run the mongodb version with
-``ruby mongo.rb``
+```ruby mongo.rb```
 
 Run the straight ruby version with
-``ruby main.rb``
+```ruby main.rb```
 
 Origional Readme:
 
