@@ -33,9 +33,9 @@ end
 
 get '/insert_data' do
 
-  require 'config/initializers/zeebox.rb'
+  load 'config/initializers/beamly.rb'
 
-  z = Zeebox::Epg.new
+  z = Beamly::Epg.new
   region_id = z.regions.first.id
   provider_id = z.providers.first.id
   result = z.catalogues(region_id, provider_id)
@@ -80,7 +80,7 @@ get '/api/' do
             },
           "episode":{
             "images": {"screen": "http://img-a.zeebox.com/940x505/'+item.episode.image+'"},
-            "overview": "'+item.episode.overview+'"
+            "overview": "'+item.episode.overview.gsub(/"/, '|')+'"
           }
 
           }

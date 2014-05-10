@@ -1,14 +1,5 @@
-GIT
-  remote: git://github.com/TigerWolf/zeebox.git
-  revision: 6c93b59a47783a34af3b2eabda278baa1ff99592
-  ref: 6c93b59a47783a34af3b2eabda278baa1ff99592
-  specs:
-    zeebox (0.0.1)
-      curb
-      hashie
-
 GEM
-  remote: https://rubygems.org/
+  remote: http://railscamp.local/rubygems/
   specs:
     activemodel (3.2.17)
       activesupport (= 3.2.17)
@@ -16,11 +7,19 @@ GEM
     activesupport (3.2.17)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    beamly (0.0.2.beta)
+      curb
+      hashie
     builder (3.0.4)
     coderay (1.1.0)
     curb (0.8.5)
     hashie (2.1.1)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.9)
+    json (1.8.1)
+    mash (0.1.1)
     method_source (0.8.2)
     mongoid (3.1.6)
       activemodel (~> 3.2)
@@ -29,6 +28,7 @@ GEM
       tzinfo (~> 0.3.29)
     moped (1.5.2)
     multi_json (1.9.2)
+    multi_xml (0.5.5)
     origin (1.1.0)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -37,6 +37,9 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
+    sentiment (0.0.2)
+      httparty
+      mash
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -49,7 +52,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  beamly (~> 0.0.2.beta)
   mongoid (~> 3.1.6)
   pry
+  sentiment
   sinatra
-  zeebox!

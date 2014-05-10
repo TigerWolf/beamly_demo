@@ -81,9 +81,10 @@ header{
 
     header .brand{
         display: inline-block;
-        width: 175px;
+        width: 375px;
         height: 175px;
-        background: url(../img/zeebox_0.jpeg) 0 0 no-repeat;
+        background: url(../img/logo.png) 0 0 no-repeat;
+        background-size: cover;
         text-indent: -99999px;
         overflow: hidden;
         border-bottom: 0 !important;
