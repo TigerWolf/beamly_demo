@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require
 require 'sinatra'
+require 'sentimentalizer'
 
 Mongoid.load!("mongoid.yml")
 
@@ -22,6 +23,7 @@ class Episode
   include Mongoid::Document
   field :overview, type: String
   field :image, type: String
+  field :sentiment, type: String
   embedded_in :tvshow
 end
 
@@ -43,6 +45,18 @@ get '/insert_data' do
   today = Date.today.strftime("%Y/%m/%d")
   schedule = z.schedule(services[8].service_id, today)
 
+  # binding.pry
+  buzz = Beamly::Buzz.new
+  Sentimentalizer.setup
+  
+  # results = buzz.episode(schedule[5].eid).results
+  # results.each do |episode|
+  #   sentiment = Sentimentalizer.analyze(episode.tweet.text)
+  # end
+
+  #.first.tweet.text
+
+
   # Clear out existing data
   Tvshow.all.delete
 
@@ -50,9 +64,17 @@ get '/insert_data' do
   schedule.each do |tvshow|
     tv_show = Tvshow.new(name: tvshow.title)
 
+    # buzz = Beamly::Buzz.new
+
+    #sentiment = Sentimentalizer.analyze(episode.tweet.text)
+    #binding.pry
+    tweet = buzz.episode(tvshow.eid).results.try(:first)
+    if tweet.present?
+      sentiment = Sentimentalizer.analyze(tweet.text)
+    end
     time = Time.at(tvshow.start).getlocal
     tv_show.show = Show.new(time: time)
-    tv_show.episode = Episode.new(overview: tvshow.desc, image: tvshow.img)
+    tv_show.episode = Episode.new(overview: tvshow.desc, image: tvshow.img, sentiment: sentiment.try(:sentiment))
     tv_show.save
   end
 
