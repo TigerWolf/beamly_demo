@@ -1,12 +1,5 @@
-GIT
-  remote: git://github.com/TigerWolf/zeebox.git
-  revision: 8ce60bb4d20cec4185f7458942d573b1a090f72b
-  specs:
-    zeebox (0.0.1)
-      curb
-
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     activemodel (3.2.17)
       activesupport (= 3.2.17)
@@ -14,9 +7,13 @@ GEM
     activesupport (3.2.17)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    beamly (0.0.3)
+      curb (~> 0)
+      hashie (~> 3.0)
     builder (3.0.4)
     coderay (1.1.0)
     curb (0.8.5)
+    hashie (3.1.0)
     i18n (0.6.9)
     method_source (0.8.2)
     mongoid (3.1.6)
@@ -46,7 +43,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  beamly (~> 0.0.3)
   mongoid (~> 3.1.6)
   pry
   sinatra
-  zeebox!

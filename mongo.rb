@@ -33,14 +33,11 @@ end
 
 get '/insert_data' do
 
-  Zeebox.configure do |config|
-    config.id = 'c9a8a7fb'
-    config.key = '1009de15cb2d654b060a90ddffcc6c5c'
-  end
+  load 'config/initializers/beamly.rb'
 
-  z = Zeebox::Epg.new
+  z = Beamly::Epg.new
   region_id = z.regions.first.id
-  provider_id = z.providers.id
+  provider_id = z.providers.first.id
   result = z.catalogues(region_id, provider_id)
   services = z.epg(result.first.epg_id)
   today = Date.today.strftime("%Y/%m/%d")
@@ -51,11 +48,11 @@ get '/insert_data' do
 
   # Create new data from the api
   schedule.each do |tvshow|
-    tv_show = Tvshow.new(name: tvshow["title"])
+    tv_show = Tvshow.new(name: tvshow.title)
 
-    time = Time.at(tvshow["start"]).getlocal
+    time = Time.at(tvshow.start).getlocal
     tv_show.show = Show.new(time: time)
-    tv_show.episode = Episode.new(overview: tvshow["desc"], image: tvshow["img"])
+    tv_show.episode = Episode.new(overview: tvshow.desc, image: tvshow.img)
     tv_show.save
   end
 
@@ -83,7 +80,7 @@ get '/api/' do
             },
           "episode":{
             "images": {"screen": "http://img-a.zeebox.com/940x505/'+item.episode.image+'"},
-            "overview": "'+item.episode.overview+'"
+            "overview": "'+item.episode.overview.gsub(/"/, '|')+'"
           }
 
           }
